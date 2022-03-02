@@ -82,7 +82,7 @@
 
 ## [8.生物信息学](#目录)
 
-> [如何学好生物信息](https://www.bilibili.com/video/BV1mJ411J78e)
+> [如何学好生物信息](https://www.bilibili.com/video/BV1mJ411J78e)  
 > [聊聊从0开始的生信自学之路](https://www.bilibili.com/video/BV1cL4y1h7jS?spm_id_from=333.999.0.0)  
 > [生信入门的经验分享](https://www.bilibili.com/video/BV1c7411h7k6?spm_id_from=333.999.0.0)
 >> 生物信息学是“生物”重要还是“信息”重要？  
