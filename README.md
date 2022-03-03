@@ -36,28 +36,27 @@
 > - Zotero文献管理软件的使用
 
 ## [3.猪](#目录)  
-> - [视频下载-猪的实体解剖术](./collections/猪的实体解剖.md)
-> - [猪病学 第十版](./collections/猪病学第10版.pdf)
-> - [猪的信号](./collections/猪的信号.pdf)
-> - [母猪的信号](./collections/母猪的信号.pdf)
-> - [仔猪的信号](./collections/仔猪的信号.pdf)
-> - [育肥猪的信号](./collections/育肥猪的信号.pdf)
+> - [视频下载-猪的实体解剖术](./collections/书籍pdf和视频下载链接.md)
+> - [猪病学 第十版](./collections/书籍pdf和视频下载链接.md)
+> - [猪的信号](./collections/书籍pdf和视频下载链接.md)
+> - [母猪的信号](./collections/书籍pdf和视频下载链接.md)
+> - [仔猪的信号](./collections/书籍pdf和视频下载链接.md)
+> - [育肥猪的信号](./collections/书籍pdf和视频下载链接.md)
 
 ## [4.分子生物学](#目录)  
 
 [**笔记跳转**](./学习笔记-分子生物学.md)
 
 > - 认识DNA和RNA
-> - PCR 
-> - RT-PCR
-> - RT-QPCR  
-> - 核酸提取
-> - 质粒构建与转化
-> - 质粒测序
-> - 构建质粒表达蛋白
-> - 基因合成和蛋白表达
-> - Crispr
-> - ELASA
+> - PCR  
+> - Touch Down PCR    
+> - RNA核酸提取
+> - RT-PCR  
+> - 荧光定量PCR   
+> - 质粒构建和蛋白表达  
+> - 第一代测序  
+> - Crispr  
+> - ELASA  
 
 ## [5.细胞生物学](#目录)  
 
@@ -70,7 +69,7 @@
 
 ## [7.生物统计学](#目录)
 > 入门课本
-> [白话统计](./collections/白话统计.pdf)
+> [白话统计](./collections/书籍pdf和视频下载链接.md)
 >
 > 入门课程    
 > [通俗统计学原理入门](https://www.bilibili.com/video/BV1x64y1B71k)  
@@ -125,7 +124,7 @@
 > [R语言安装指南](https://www.bilibili.com/video/BV19p4y1i7Zb?spm_id_from=333.999.0.0)  
 >
 >[陪你入门R语言-R语言实战参考书](https://www.bilibili.com/video/BV1vq4y1C7Bp?spm_id_from=333.999.0.0)  
->> [R语言实战参考书](./collections/R语言实战（中文完整版）.pdf)
+>> [R语言实战参考书](./collections/书籍pdf和视频下载链接.md)
 > 
 > [生信必备技巧之R语言基础教程全集](https://www.bilibili.com/video/BV1gb4y1X7Mw?p=1)    
 >> [R语言基础教程笔记和代码](./collections/生信师兄-R语言课程笔记和代码)
