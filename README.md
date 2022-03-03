@@ -68,15 +68,15 @@
 
 
 ## [7.生物统计学](#目录)
-> 入门课本
+> 入门课本  
 > [白话统计](./collections/书籍pdf和视频下载链接.md)
 >
 > 入门课程    
 > [通俗统计学原理入门](https://www.bilibili.com/video/BV1x64y1B71k)  
 > [大白话统计学推文](https://mp.weixin.qq.com/s?__biz=MzI1ODk0MTMwNQ==&mid=2247484513&idx=1&sn=70ff16f1b18120c36ebdc1782f412b19&chksm=ea01cc77dd76456157b73285f3d54fb0b6e6dcc80ec3b54847f9d6c0aa8148f68a3b3f51d895&scene=21#wechat_redirect)  
-> [生物信息学入门课：学习生信你需要了解的统计学](https://ke.qq.com/course/395709)  
 > 
 > 进阶课程  
+> [生物信息学入门课：学习生信你需要了解的统计学](https://ke.qq.com/course/395709)  
 > [生物信息学入门课：生信中常用的多元统计分析](https://ke.qq.com/course/709956)
 
 ## [8.生物信息学](#目录)
@@ -109,24 +109,22 @@
 ### [linux](#目录)
 
 > [2021韩顺平 一周学会Linux](https://www.bilibili.com/video/BV1Sv411r7vd?p=1)**（基本命令跟做一遍）**  
-> [**笔记pdf跳转**](/collections/韩顺平_2021图解Linux全面升级.pdf)    
+> [**笔记跳转**](/collections/韩顺平_2021图解Linux全面升级.pdf)    
 > 
 > [史上最牛的Linux视频教程—兄弟连](https://www.bilibili.com/video/BV1mW411i7Qf?p=1)**（配合理解,用来入门shell）**      
-> [**笔记pdf跳转**](/Memo/collections/linux视频教程-兄弟连.pdfoll)    
+> [**笔记跳转**](/Memo/collections/linux视频教程-兄弟连.pdfoll)    
 > 
 > [Linux操作与生物信息](https://www.bilibili.com/video/BV1hb411b7Ng?spm_id_from=333.999.0.0)**（将linux和生物信息学结合）**   
-> [**平台搭建笔记跳转**](./学习笔记-生物信息学平台搭建.md)   
+> [**笔记跳转**](./学习笔记-生物信息学平台搭建.md)   
 > 
 > [生物信息分析平台搭建](https://www.bilibili.com/video/BV1hM4y1g7D4?spm_id_from=333.999.0.0)**（用来配合安装以后所需软件）**     
 
 ### [R语言](#目录)
 
 > [R语言安装指南](https://www.bilibili.com/video/BV19p4y1i7Zb?spm_id_from=333.999.0.0)  
->
->[陪你入门R语言-R语言实战参考书](https://www.bilibili.com/video/BV1vq4y1C7Bp?spm_id_from=333.999.0.0)  
->> [R语言实战参考书](./collections/书籍pdf和视频下载链接.md)
-> 
+>  
 > [生信必备技巧之R语言基础教程全集](https://www.bilibili.com/video/BV1gb4y1X7Mw?p=1)    
+>> [参考书-《R语言实战》《R数据科学》](./collections/书籍pdf和视频下载链接.md)
 >> [R语言基础教程笔记和代码](./collections/生信师兄-R语言课程笔记和代码)
 
 ### [全面理论理解](#目录)
