@@ -32,6 +32,7 @@
 > - 丁香园
 > - Google 
 > - 文献
+> - github
 
 ## [2.文献检索与管理](#目录)  
 
@@ -91,6 +92,7 @@
 > [生物信息学入门课：生信中常用的多元统计分析](https://ke.qq.com/course/709956)
 
 ## [8.生物信息学](#目录)
+
 ### [杂谈](#目录)
 > [如何学好生物信息](https://www.bilibili.com/video/BV1mJ411J78e)  
 > [聊聊从0开始的生信自学之路](https://www.bilibili.com/video/BV1cL4y1h7jS?spm_id_from=333.999.0.0)  
