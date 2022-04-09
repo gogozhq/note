@@ -2,14 +2,11 @@
 ---
 
 # 目录
-  - [1.信息检索](#1信息检索)
-  - [2.文献检索与管理](#2文献检索与管理)
-  - [3.猪](#3猪)
-  - [4.分子生物学](#4分子生物学)
-  - [5.细胞生物学](#5细胞生物学)
-  - [6.病毒序列遗传进化分析](#6构建系统发育树)
-  - [7.生物统计学](#7生物统计学)
-  - [8.生物信息学](#8生物信息学)
+  - [猪](#猪)
+  - [分子生物学](#分子生物学)
+  - [病毒序列遗传进化分析](#病毒序列遗传进化分析)
+  - [生物统计学](#生物统计学)
+  - [生物信息学](#生物信息学)
     - [杂谈](#杂谈)
     - [linux](#linux)
     - [R语言](#r语言)
@@ -21,29 +18,7 @@
     - [宏病毒组学实操](#宏病毒组学实操)
     - [后续提升](#后续提升)
 
-
-## [1.信息检索](#目录)  
-
-> - bilibili 
-> - 知乎 
-> - 微信公众号文章
-> - 语雀
-> - 简书
-> - 丁香园
-> - Google 
-> - 文献
-> - github
-
-## [2.文献检索与管理](#目录)  
-
-> - [知网](https://www.cnki.net/)
-> - [Pubmed](https://pubmed.ncbi.nlm.nih.gov/)
-> - [Google学术搜索](https://scholar.google.com/)
-> - [connectedpapers](https://www.bilibili.com/video/BV1h54y1U7kr?spm_id_from=333.999.0.0)
-> - 文献相关Edge插件的使用
-> - Zotero文献管理软件的使用
-
-## [3.猪](#目录)  
+## [猪](#目录)  
 > - [视频下载-猪的实体解剖术](./collections/书籍pdf和视频下载链接.md)
 > - [猪病学 第十版](./collections/书籍pdf和视频下载链接.md)
 > - [猪的信号](./collections/书籍pdf和视频下载链接.md)
@@ -51,7 +26,7 @@
 > - [仔猪的信号](./collections/书籍pdf和视频下载链接.md)
 > - [育肥猪的信号](./collections/书籍pdf和视频下载链接.md)
 
-## [4.分子生物学](#目录)  
+## [分子生物学](#目录)  
 [**笔记跳转**](./学习笔记-分子生物学.md)
 
 - 实验protocol包
@@ -70,16 +45,10 @@
 - 9. 质粒构建表达 
 - 10. snapgene
 
-## [5.细胞生物学](#目录)  
+## [遗传进化分析](#目录)  
+[**笔记跳转**](./学习笔记-遗传进化分析.md)
 
-> - 细胞复苏
-> - 细胞传代
-> - 细胞冻存
-
-## [6.病毒序列遗传进化分析](#目录)  
-[**笔记跳转**](./学习笔记-病毒序列遗传进化分析.md)
-
-## [7.生物统计学](#目录)
+## [生物统计学](#目录)
 > 入门课本  
 > [白话统计](./collections/书籍pdf和视频下载链接.md)
 >
@@ -91,7 +60,7 @@
 > [生物信息学入门课：学习生信你需要了解的统计学](https://ke.qq.com/course/395709)  
 > [生物信息学入门课：生信中常用的多元统计分析](https://ke.qq.com/course/709956)
 
-## [8.生物信息学](#目录)
+## [生物信息学](#目录)
 
 ### [杂谈](#目录)
 > [如何学好生物信息](https://www.bilibili.com/video/BV1mJ411J78e)  
@@ -122,6 +91,8 @@
 > [生信必备技巧之R语言基础教程全集](https://www.bilibili.com/video/BV1gb4y1X7Mw?p=1)    
 >> [参考书-《R语言实战》《R数据科学》](./collections/书籍pdf和视频下载链接.md)
 >> [R语言基础教程笔记和代码](./collections/生信师兄-R语言课程笔记和代码)
+>
+> [R语言与生物信息绘图](https://www.bilibili.com/video/BV1XJ411m73p?p=1) 
 
 ### [生信快速入门视频](#目录)
 > [生物信息快速入门](https://www.bilibili.com/video/BV1C4411w7jM?p=46)**（用来配合理解后续相关知识）**  
@@ -143,11 +114,8 @@
 ### [RNA-seq实操](#目录)  
 > [纪伟讲测序—RNAseq（系列视频-共10讲）](https://www.bilibili.com/video/BV1TJ411V7av?spm_id_from=333.999.0.0) 
 
-> [Environmental Metagenomics Workshop 2017 at CICESE](https://2017-cicese-metagenomics.readthedocs.io/en/latest/toc.html)   
-> [**笔记跳转**](../二代测序分析/../NGS-analysis/Environmental%20Metagenomics%20Workshop%202017%20at%20CICESE.md)  
->> [中文流程—宏基因组分析专题]( http://blog.genesino.com/) 
-
 > [15天入门生物信息（2021年）课程实操](https://www.bilibili.com/video/BV1K44y1B7Dg)    
+> [**笔记跳转**](../二代测序分析/../NGS-analysis/15天入门生物信息（2021年）课程实操.md)  
 >> [课程资源](http://ftp.genek.cn:8888/jzjkkz_20210123/)    
 
 ### [宏病毒组学实操](#目录)
