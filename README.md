@@ -83,7 +83,8 @@
 >
 > [R语言安装指南](https://www.bilibili.com/video/BV19p4y1i7Zb?spm_id_from=333.999.0.0)  
 > 
-> 购买解螺旋课程-**14天R语言从入门到精通**
+> [解螺旋课程-R语言从入门到精通](https://www.helixlife.cn/periods-learn/3c0b4b1c-a7b0-41d1-a97f-195d4aa1679b)  
+>> [**笔记跳转**](./supplement/解螺旋课程-R语言从入门到精通)  
 >
 > [R语言与生物信息绘图](https://www.bilibili.com/video/BV1bq4y1T76W?spm_id_from=333.851.header_right.history_list.click)   
 

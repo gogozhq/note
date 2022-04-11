@@ -1,0 +1,482 @@
+---
+title: "数据清洗"
+author: "Leopard"
+date: "2020-02-10"
+output:
+  html_document:
+    self_contained: false
+    theme: united
+    highlight: tango
+---
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 18px;
+      font-family:Noto Nastaliq Urdu;
+  }
+td {  /* Table  */
+  font-size: 8px;
+}
+h1.title {
+  font-size: 38px;
+  color: DarkRed;
+}
+h1 { /* Header 1 */
+  font-size: 28px;
+  color: DarkRed;
+  font-family:Noto Nastaliq Urdu;
+}
+h2 { /* Header 2 */
+    font-size: 22px;
+  color: DarkRed;
+  font-family:Noto Nastaliq Urdu;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  color: DarkRed;
+}
+code.r{ /* Code block */
+    font-size: 18px;
+    font-family:Noto Nastaliq Urdu;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 18px;
+    font-family:Noto Nastaliq Urdu;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::knit_hooks$set(error = function(x, options) {
+  paste0("<pre style=\"color: red;\"><code>", x, "</code></pre>")
+})
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##向量
+```{r}
+x1 = c(2,3)
+x2 = c(3,2)
+identical(x1,x2)
+```
+
+
+##冒号
+生成连续整数
+```{r}
+my_vec <- c(1:5,8:10)
+my_vec
+```
+
+##seq函数
+生成一串具有规律的数字序列
+```{r}
+x <- seq(1.1, 2, by = 0.1)
+x
+y <- seq(2, 1.1, by = -0.1)
+y
+z <- seq(1.1, 2, length.out = 8)
+z
+```
+
+##rep函数
+重复生成一组数值
+```{r}
+a <- rep(x = 1:4, times = 2)
+a
+b <- rep(x = 1:4, each = 2)
+b
+```
+
+##随机抽样
+```{r}
+sample(x = 1:100, size = 10)
+```
+
+##设置随机数种子
+```{r}
+set.seed(2017)
+sample(x = 1:100, size = 10)
+```
+
+```{r}
+set.seed(2017)
+sample(x = 1:100, size = 10)
+```
+
+##随机放回抽样
+```{r}
+set.seed(2017)
+sample(1:10, 8, replace = TRUE)
+sample(1:5, 10, replace = TRUE)
+```
+
+##非等概率抽样
+```{r}
+sample(1:3, size = 10, replace = TRUE, prob = c(0.2,0.2,0.6))
+```
+
+##生成服从特定分布的随机数
+```{r}
+set.seed(2017)
+x <- rnorm(n = 10,mean = 1, sd = 0.5)
+x
+```
+
+##下标的作用
+```{r}
+x <- c(1,3,5,7,9)
+x[3]
+x[c(3,4)]
+```
+
+```{r}
+x <- c(1,3,5,7,9)
+x[-3]
+```
+
+##字符串向量
+```{r}
+my_string <- c("I love R",'I love China','我爱中国')
+my_string
+class(my_string)
+```
+
+##内置字符串
+```{r}
+letters
+LETTERS
+month.abb
+month.name
+```
+
+##逻辑向量
+```{r}
+my_logic <- c(100>101, 2>1, 100!=99, 100>99 & 99>98,
+              100>99 | 99<98)
+my_logic
+class(my_logic)
+```
+
+##逻辑向量基本特征：可加性
+```{r}
+res <- TRUE + FALSE
+res
+
+my_logic <- c(100 > 101, 2 > 1, 100!=99, 100>99 & 99>98,
+              100>99 | 99<98)
+sum(my_logic)
+```
+
+##逻辑向量基本特征：可溯性
+```{r}
+x <- 1:5
+x[c(TRUE,FALSE,TRUE,FALSE,TRUE)]
+```
+
+##逻辑向量特征应用
+```{r}
+set.seed(2017)
+x <- sample(1:100,20)
+logic <- x>50
+x[logic]
+```
+
+```{r}
+x[x>50]
+```
+
+##向量化操作与运算
+```{r}
+x <- 1:5
+y <- 2:6
+x+y
+```
+
+```{r}
+x <- 1:5
+y <- 10
+x+y
+```
+
+```{r}
+x <- 1:5
+y <- 2:3
+x+y
+```
+
+##生成因子向量
+```{r}
+my_fact <- factor(x = c('cheery', 'banana', 'apple'))
+my_fact
+```
+
+##因子向量水平
+```{r}
+my_fact <- factor(x = c('cheery', 'banana', 'apple'), 
+                  levels = c('cheery', 'banana', 'apple'))
+my_fact
+```
+
+```{r}
+levels(my_fact)
+nlevels(my_fact)
+```
+
+##时间日期向量
+```{r,message=FALSE}
+library(lubridate)
+today()
+now()
+```
+
+##通过字符串创建时间日期
+```{r}
+ymd("2020-01-31")
+mdy("January 31st, 2020")
+dmy("31-Jan-2020")
+ymd(20200131)
+```
+
+##强制转换成时间日期
+```{r}
+as_datetime(today())
+as_date(now())
+as_date(365 * 10 + 5)
+```
+
+##NA和NULL的区别
+```{r}
+a <- c(1,2,3,NULL)
+length(a)
+b <- c(1,2,3,NA)
+length(b)
+```
+
+##列表
+```{r}
+a <- list(a = 1:3, b = "a string", c = pi, d = list(-1, -5))
+a
+```
+
+##列表取子集
+```{r}
+a[1]
+str(a[1])
+```
+
+```{r}
+a[[1]]
+a$a
+a[['a']]
+a[[1]][1]
+```
+
+
+##矩阵
+```{r}
+my_mat <- matrix(data = 1:6, nrow = 2, byrow = TRUE)
+my_mat
+
+my_mat2 <- matrix(data = c('A','B','C'), nrow = 4, ncol = 3)
+my_mat2
+
+my_mat3 <- matrix(c(1,2,3, 11,12,13), nrow = 2, byrow = TRUE, dimnames = list(c('A','B'), c('V1','V2','V3')))
+my_mat3
+```
+
+##数组
+```{r}
+my_array <- array(data = 1:24, dim = c(3,4,2))
+my_array
+
+my_array2 <- array(data = 1:24, dim = c(3,4,2), dimnames = list(c('R1','R2','R3'),c('C1','C2','C3','C4'),c('first','second')))
+my_array2
+```
+
+##矩阵子集提取
+```{r,error=TRUE}
+my_mat5 <- matrix(LETTERS[1:8],ncol = 4)
+my_mat5
+
+my_mat5[1,2]
+my_mat5[2,4]
+
+my_mat5[3,2]
+
+my_mat5[1,]
+my_mat5[,2]
+
+my_mat5[2,,drop = FALSE]
+```
+
+##数组子集提取
+```{r,error=TRUE}
+my_array2 <- array(data = 1:24, dim = c(3,4,2),dimnames = list(c('R1','R2','R3'),c('C1','C2','C3','C4'),c('first','second')))
+my_array2
+
+my_array2[4,2,1]
+my_array2[1,,]
+my_array2[1,,,drop = FALSE]
+```
+
+##构建简单的数据框
+```{r}
+my_df <- data.frame(num = 1:5, letter = LETTERS[1:5], 
+                    logic = c(T,F,T,F,T))
+my_df
+```
+
+##识别数据框的结构
+```{r}
+str(my_df)
+dim(my_df)
+ncol(my_df)
+nrow(my_df)
+names(my_df)
+colnames(my_df)
+
+names(my_df) <- c('V1','V2','V3')
+my_df
+```
+
+##数据框取子集
+```{r}
+my_df$V1
+my_df[1,]
+my_df[,2]
+my_df[,'V1']
+my_df[[1]]
+my_df[['V1']]
+```
+
+##if语句
+```{r}
+set.seed(2020)
+x <- sample(1:100,1)
+if(x%%2==0) print('x是偶数') else print('x是奇数')
+```
+
+```{r}
+set.seed(2020)
+x <- sample(1:100,1)
+if(x%%2==0) {
+  print('x是偶数')
+  } else {#else必须紧跟在第一个大括号后面，不能分行。
+    print('x是奇数')
+  }
+```
+
+```{r}
+x <- 1:5
+if(x%%2==0) print('x是偶数') else print('x是奇数')
+```
+
+```{r}
+x <- 1:5
+ifelse(x%%2==0, 'x是偶数','x是奇数')
+```
+
+##repeat循环
+```{r}
+x <- 5
+repeat{if(x > 20) break else print(x); x = x+5}
+```
+
+##while循环
+```{r}
+x <- 5
+while(x <= 20) {print(x);x = x + 5}
+```
+
+##for循环
+```{r}
+for(i in 1:5){
+  print(LETTERS[i])
+}
+```
+
+##善用break与next
+```{r}
+for(i in 1:5){
+  if(i == 3){
+    next
+  }   
+  print(LETTERS[i])
+}
+```
+
+```{r}
+for(i in 1:5){
+  if(i == 3){
+    break
+  }
+  print(LETTERS[i])
+}
+```
+
+##构建自定义函数
+```{r}
+my_fun <- function(x,y){
+  z = x + y
+  return(z)
+}
+
+my_fun(2,3)
+```
+
+```{r}
+my_fun2 <- function(x,y=5){
+  z = x + y
+  return(z)
+}
+my_fun2(5)
+my_fun2(2,3) #覆盖默认参数
+```
+
+##循环纠错
+```{r}
+set.seed(2020)
+#构造随机数据
+df <- data.frame(y = rnorm(100,10,2),
+                 x1 = rbeta(100,3,4),
+                 x2 = rbeta(100,5,4),
+                 x3 = c(rbeta(99,7,7),0),
+                 x4 = rbeta(100,3,7))
+```
+
+##跑循环
+```{r,error=TRUE}
+fits <- list()
+for(i in 1:4){
+  fits[[i]] = lm(y~log(df[,i+1]),data = df)
+}
+```
+
+##纠错
+```{r}
+fits <- list()
+for(i in 1:4){
+  re = try({fits[[i]] = lm(y~log(df[,i+1]),data = df)},
+           silent = TRUE)
+  if(inherits(re,'try-error')) {
+    fits[[i]] = 'troubles here!!!' 
+    next
+  }
+}
+```
+
+```{r}
+fits
+summary(fits[[1]])
+```
+
+
+
+
+
+
+
+
+
+

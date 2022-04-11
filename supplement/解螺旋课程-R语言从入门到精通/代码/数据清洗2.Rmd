@@ -1,0 +1,523 @@
+---
+title: "数据清洗II"
+author: "Leopard"
+date: "2/12/2020"
+output:
+  html_document:
+    self_contained: false
+    theme: united
+    highlight: tango
+---
+
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 18px;
+      font-family:Noto Nastaliq Urdu;
+  }
+td {  /* Table  */
+  font-size: 16px;
+}
+h1.title {
+  font-size: 38px;
+  color: DarkRed;
+}
+h1 { /* Header 1 */
+  font-size: 28px;
+  color: DarkRed;
+  font-family:Noto Nastaliq Urdu;
+}
+h2 { /* Header 2 */
+    font-size: 22px;
+  color: DarkRed;
+  font-family:Noto Nastaliq Urdu;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  color: DarkRed;
+}
+code.r{ /* Code block */
+    font-size: 18px;
+    font-family:Noto Nastaliq Urdu;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 18px;
+    font-family:Noto Nastaliq Urdu;
+}
+</style>
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+library(tidyverse)
+```
+
+
+```{r setup, include=FALSE}
+knitr::knit_hooks$set(error = function(x, options) {
+  paste0("<pre style=\"color: red;\"><code>", x, "</code></pre>")
+})
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##基础包数据的读取
+```{r,eval=FALSE}
+mydata <- read.table('E:\\book draft\\R语言与数据清洗\\sample data\\hbv_age_gender.csv',sep = ',',header = TRUE)
+
+#等同于使用read.csv()函数
+
+iris2 <- read.table('E:\\book draft\\R语言与数据清洗\\sample data\\iris.txt',header = TRUE)
+
+iris3 <- read.table('E:\\book draft\\R语言与数据清洗\\sample data\\iris2.txt',sep = ';', header = TRUE)
+```
+
+```{r,eval=FALSE}
+mydata <- read.csv('E:\\book draft\\R语言与数据清洗\\sample data\\hbv_age_gender.csv',na.strings = c(999,9999,8888),
+                   stringsAsFactors = FALSE,
+                   colClasses=c("character",rep("numeric",5)))
+
+mydata <- read.csv('E:\\book draft\\R语言与数据清洗\\sample data\\hbv_age_gender.csv',na.strings = c(999,9999,8888),
+                   stringsAsFactors = FALSE,
+                   colClasses=c('time' = 'character'))
+```
+
+##readr
+```{r,eval=FALSE}
+read.csv('E:\\book draft\\R语言与数据清洗\\sample data\\hbv_age_gender.csv',colClasses = 'cddddd')
+```
+
+##数据导出
+```{r,eval=FALSE}
+write.csv(mydata,file = 'E:\\book draft\\R语言与数据清洗\\sample data\\new_Data.csv',row.names = FALSE)
+```
+
+##排序
+
+```{r}
+set.seed(2020)
+x <- sample(1:100,10)
+x
+sort(x)
+sort(x,decreasing = TRUE)
+```
+
+```{r}
+rank(x)
+```
+
+```{r}
+order(x)
+x[order(x)]
+```
+
+```{r}
+set.seed(2021)
+df <- tibble(x = sample(1:3,10,replace = TRUE),
+             y = sample(100:200,10))
+knitr::kable(df)
+```
+
+```{r}
+knitr::kable(df[order(df$x),])
+```
+
+```{r}
+#dplyr
+knitr::kable(arrange(df,x))
+```
+
+```{r}
+knitr::kable(arrange(df,x,y))
+knitr::kable(arrange(df,x,desc(y)))
+```
+
+##查重
+
+```{r}
+x <- c(1,2,2,3,4)
+duplicated(x)
+unique(x)
+```
+
+##去重
+```{r}
+x[!duplicated(x)]
+```
+
+```{r}
+df <- tibble(x = c(1,2,2,3,4),
+             y = c(2,3,3,5,6))
+duplicated(df)
+```
+
+```{r}
+df[!duplicated(df),]
+distinct(df)
+```
+
+
+##查缺
+
+```{r}
+x <- c(1,2,3,NA)
+is.na(x)
+anyNA(x)
+
+df <- tibble(x = c(1,2,NA,3,4),
+             y = c(2,3,3,5,NA))
+is.na(df)
+anyNA(df)
+```
+
+##去缺
+```{r}
+x[!is.na(x)]
+df[!is.na(df),]
+```
+
+```{r}
+df[!is.na(df$x),]
+```
+
+```{r}
+na.omit(df)
+```
+
+```{r}
+set.seed(2020)
+cancer <- data.frame(id = 1:1000, sur_days = sample(100:1000, 1000, replace = TRUE), type = sample(c('colon','liver','lung', 'breast'),1000, replace = TRUE), treatment = sample(c('surg','chemo'), 1000, replace = TRUE))
+head(cancer)
+```
+##人为设置缺失值
+```{r}
+set.seed(2020)
+cancer[sample(1:1000,90), 2] <- NA
+```
+
+```{r}
+mean_value <- tapply(cancer$sur_days, list(cancer$type, cancer$treatment), mean, na.rm = TRUE)
+mean_value
+class(mean_value)
+```
+
+##缺失值简单填补
+```{r}
+for(i in 1:4){
+  for(j in 1:2){
+    cancer$sur_days[is.na(cancer$sur_days) & cancer$type == rownames(mean_value)[i] & cancer$treatment == colnames(mean_value)[j]] = mean_value[i,j]
+  }
+}
+
+summary(cancer)
+```
+
+##高级插补方法
+```{r,eval=FALSE}
+install.packages('mlbench')
+install.packages('mice')
+```
+
+```{r,message=FALSE,warning=FALSE}
+library(mlbench)
+library(mice)
+data("BostonHousing")
+str(BostonHousing)
+```
+
+```{r}
+original_data <- BostonHousing
+set.seed(2020)
+BostonHousing[sample(1:nrow(BostonHousing), 80), "rad"] <- NA
+BostonHousing[sample(1:nrow(BostonHousing), 80), "ptratio"] <- NA
+md.pattern(BostonHousing)
+```
+
+```{r}
+miceMod <- mice(BostonHousing[, !names(BostonHousing) %in% "medv"], method="rf")
+```
+
+```{r}
+miceOutput <- complete(miceMod)  # 生成完整数据
+anyNA(miceOutput)
+```
+
+##插补效果检验
+```{r}
+actuals <- original_data$rad[is.na(BostonHousing$rad)]
+predicteds <- miceOutput[is.na(BostonHousing$rad), "rad"]
+mean(actuals != predicteds) 
+```
+
+##根据变量特征进行选择
+```{r}
+str(iris)
+filter(iris,Sepal.Length>7.5)
+```
+
+```{r}
+filter(iris,Sepal.Length>7.5 & Sepal.Width>=3.0)
+```
+
+```{r}
+slice(iris,1:4)
+```
+
+```{r}
+sample_n(iris,5)
+```
+
+```{r}
+sample_frac(iris,size = 0.02)
+```
+
+```{r}
+top_n(iris,1,Sepal.Length)
+```
+
+##如何按照分类变量的不同水平进行筛选？
+
+```{r}
+iris %>% group_by(Species) %>% top_n(1,Sepal.Length)
+```
+
+```{r}
+iris %>% group_by(Species) %>% sample_n(2)
+```
+
+##列筛选
+```{r}
+iris %>% select(Sepal.Length)
+```
+
+```{r}
+iris %>% select(starts_with('Sepal'))
+```
+
+```{r}
+iris %>% select(matches('Sep'))
+```
+
+##数据变换
+```{r}
+set.seed(2020)
+df <- tibble(x = exp(rnorm(100,4,1)),
+             y = rbeta(100,5,5))
+plot(density(df$x))
+plot(density(log(df$x)))
+shapiro.test(log(df$x))
+```
+
+##box-cox变换
+```{r,message=FALSE,warning=FALSE}
+library(forecast)
+lambda <- BoxCox.lambda(df$x,method = 'loglik')
+x2 <- (df$x^lambda-1)/lambda
+plot(density(x2))
+```
+
+#切分
+```{r}
+set.seed(2020)
+age <- sample(1:100,20)
+age_group <- ifelse(age>=60,'old',
+                    ifelse(age<=20,'young','middle'))
+age_group
+```
+
+```{r}
+age_group2 <- cut(age,breaks = c(0,20,60,100),
+                  labels = c('0~20','21~59','60+'),
+                  include.lowest = TRUE,
+                  right = TRUE)
+age_group2
+```
+
+##新增变量
+
+```{r}
+df <- tibble(x = exp(rnorm(100,4,1)),
+             y = rbeta(100,5,5))
+df$z <- rnorm(100,3,3)
+head(df)
+```
+
+```{r,eval=FALSE}
+df <- df %>% mutate(z = rnorm(100,3,3))
+```
+
+```{r}
+df <- tibble(x = exp(rnorm(100,4,1)),
+             y = rbeta(100,5,5)) %>%
+  mutate(z = x^2+1)
+head(df)
+```
+
+##纵向追加
+
+```{r}
+df_a <- data.frame(x = 1:3,y = 2:4, z = letters[1:3])
+df_a
+df_b <- data.frame(x = 4:6,y = 5:7, z = letters[4:6])
+df_b
+rbind(df_a,df_b)
+```
+
+##横向追加
+
+```{r}
+df_c <- data.frame(x1 = 1:3,y1 = 2:4, z1 = letters[1:3])
+df_c
+df_d <- data.frame(x2 = 4:6,y2 = 5:7, z2 = letters[4:6])
+df_d
+cbind(df_c,df_d)
+```
+
+```{r,eval=FALSE}
+bind_rows(df_a,df_b)
+bind_cols(df_c,df_d)
+```
+
+##一维向量的合并
+
+```{r}
+x <- c(1,2,3,7,9)
+y <- c(1,3,5,7,9)
+
+intersect(x,y)#交集运算(a)
+setdiff(x,y)#取x中的特有元素(c)
+setdiff(y,x)#取y中的特有元素(d)
+union(x,y)#并集运算(e)
+union(setdiff(x,y),setdiff(y,x))#取x和y中特有的元素(b)
+```
+
+##数据匹配合并
+```{r}
+df <- data.frame(x = c('a','b','c','a','b','e','d','f'), 
+                 y = c(1,2,3,4,5,6,7,8),
+                 stringsAsFactors = FALSE)
+df2 <- data.frame(x = c('a','b','c'), 
+                  z = c('A','B','C'),
+                  stringsAsFactors = FALSE)
+df
+df2
+```
+
+##内联
+
+```{r}
+inner_join(x = df, y = df2, by = 'x')
+```
+
+##左联
+```{r}
+left_join(x = df, y = df2, by = 'x')
+```
+
+##右联
+```{r}
+right_join(x = df, y = df2, by = 'x')
+```
+
+##全联
+```{r}
+full_join(x = df, y = df2, by = 'x')
+```
+
+##半联
+```{r}
+semi_join(x = df, y = df2, by = 'x')
+```
+
+##反联
+```{r}
+anti_join(x = df, y = df2, by = 'x')
+```
+
+##数据长宽结构转换
+```{r}
+df_wide <- data.frame(name = c('Messi','Neymar','Ronaldo','Mbappe'),
+                      drug = LETTERS[1:4],
+                      dose = c(0.5,0.5,1,1.5),
+                      week1 = c(128,146,156,157),
+                      week2 = c(133,144,142,136),
+                      week3 = c(122,151,132,130),
+                      week4 = c(119,148,125,122))
+df_wide
+```
+
+##宽变长
+```{r}
+df_long <- gather(df_wide, key = week, value = SBP,
+                  -c(name,drug,dose))
+df_long
+```
+
+##长变宽
+```{r}
+df_wide2 <- spread(df_long,key = week, value = SBP)
+df_wide2
+```
+
+##批量运算
+```{r}
+apply(iris[,-5],2,mean)
+```
+
+```{r}
+head(apply(iris[,-5],1,sum))
+```
+
+```{r}
+tapply(iris$Sepal.Length,iris$Species,mean)
+```
+
+```{r}
+head(mtcars)
+```
+
+```{r}
+tapply(mtcars$mpg,list(mtcars$cyl,mtcars$vs),mean)
+```
+
+```{r}
+myfun <- function(x) lm(x~Sepal.Length,data = iris)
+lapply(iris[,2:4],myfun)
+```
+
+```{r}
+aggregate(mtcars,by=list(mtcars$cyl,mtcars$gear),FUN=mean)
+```
+
+```{r}
+aggregate(state.x77,list(Region = state.region, 
+                         Cold = state.x77[,"Frost"] > 130),  
+          mean)
+```
+
+```{r}
+#one ~ one
+aggregate(weight ~ feed, data = chickwts, mean)
+
+#one ~ many
+aggregate(breaks ~ wool + tension, data = warpbreaks, mean)
+
+#many ~ one
+aggregate(cbind(Ozone, Temp) ~ Month, data = airquality, mean)
+
+#many ~ many
+aggregate(cbind(ncases, ncontrols) ~ alcgp + tobgp, data = esoph, sum)
+```
+
+```{r}
+summarise(mtcars,mean1 = mean(mpg),sd1 = sd(mpg))
+```
+
+```{r}
+iris %>% group_by(Species) %>% summarise(mean1 = mean(Sepal.Length), sd1 = sd(Sepal.Width))
+```
+
+
+
+
+
+
+
+

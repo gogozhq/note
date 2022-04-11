@@ -1,0 +1,288 @@
+---
+title: "数据清洗4"
+author: "Leopard"
+date: "2/14/2020"
+output:
+  html_document:
+    self_contained: false
+    theme: united
+    highlight: tango
+---
+
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 18px;
+      font-family:Noto Nastaliq Urdu;
+  }
+td {  /* Table  */
+  font-size: 16px;
+}
+h1.title {
+  font-size: 38px;
+  color: DarkRed;
+}
+h1 { /* Header 1 */
+  font-size: 28px;
+  color: DarkRed;
+  font-family:Noto Nastaliq Urdu;
+}
+h2 { /* Header 2 */
+    font-size: 22px;
+  color: DarkRed;
+  font-family:Noto Nastaliq Urdu;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  color: DarkRed;
+}
+code.r{ /* Code block */
+    font-size: 18px;
+    font-family:Noto Nastaliq Urdu;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 18px;
+    font-family:Noto Nastaliq Urdu;
+}
+</style>
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+library(tidyverse)
+```
+
+
+```{r setup, include=FALSE}
+knitr::knit_hooks$set(error = function(x, options) {
+  paste0("<pre style=\"color: red;\"><code>", x, "</code></pre>")
+})
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##计算长度
+```{r}
+nchar(c('Fudan','Jiaoda'))
+length(c('Fudan','Jiaoda'))
+```
+
+##大小写转换
+```{r}
+toupper('yixue')
+tolower('YIXUE')
+Hmisc::capitalize('yixue')
+```
+
+##粘贴
+```{r}
+stringA <- LETTERS[1:5]
+stringB <- 1:5
+paste(stringA, stringB, sep = '-')
+```
+
+```{r}
+paste(stringA, stringB, collapse = ',')
+```
+
+```{r}
+paste0(stringA, stringB)
+```
+
+##拆分
+```{r}
+stringC <- paste(stringA, stringB, sep = '-')
+strsplit(stringC, split = '-')
+```
+
+```{r}
+unlist(strsplit(stringC, split = '-'))
+```
+
+##截取
+```{r}
+Temp_string <-  c('python', 'R', 'Ruby', 'PHP', 'Java', 
+                'JavaScript', 'C', 'C++', 'Oracle')
+sub_str <- substr(Temp_string, start = 1, stop = 3)
+sub_str
+```
+
+##搜索匹配
+```{r}
+seq_names <- c('EU_FRA02_C1_S2008','AF_COM12_B0_2004','AF_COM17_F0_S2008','AS_CHN11_C3_2004','EU-FRA-C3-S2007','NAUSA02E02005','AS_CHN12_N0_05','NA_USA03_C2_S2007','NA USA04 A3 2004','EU_UK01_A0_2009','eu_fra_a2_s98', 'SA/BRA08/B0/1996')
+```
+
+```{r}
+fra_seq <- grep(pattern = 'FRA|fra', x = seq_names)
+fra_seq
+seq_names[fra_seq]
+```
+
+```{r}
+grep(pattern = 'FRA|fra', x = seq_names, value = TRUE)
+```
+
+##替换
+```{r}
+gsub(pattern = '/| ',replacement = '_',seq_names)
+```
+
+#正则表达式
+## 原义表达式
+
+所有的英文字母，数字以及一些字符，其本身就是一个正则表达式，用于匹配其本身
+
+```{r}
+mystring1 <- c('apple','orange','yellow')
+grep('a',mystring1)
+#找到字符串向量中含有字母a的字符串
+```
+## 转义表达式
+
+一些字符串放在表达式中，不表达其本意，而发挥其他作用.
+
+### 点号‘.’:表示任意字符串.
+
+```{r}
+mystring2 <- c('shdua','.dsf','-dsfd')
+grep('.',mystring2)
+mystring2_2 <- c('cat','cot','catch','coding')
+grep('c.t',mystring2_2)
+#表示匹配以字母c开头的，字符串中带有t的字符串
+```
+
+### '[]'方括号，表示匹配放置其中的任意字符.
+
+```{r}
+mystring3 <- c('9abc','fss7','1000','szfsx3')
+grep( '[7-9]',mystring3)
+#匹配字符串中含有7，8，9的字符串
+```
+
+### '^' 指数符号，放在正则表达式的开头，匹配字符串的开头.
+
+```{r}
+mystring4 <- c('apple','application','appliance','apolitical')
+grep('^app',mystring4)
+```
+
+### '^'放在[]内，表示匹配非方括号内的任意字符,可用于去除只含有特定字符的字符串.
+```{r}
+mystring5 <- c('123','231','321','4321')
+grep('[^1-3]',mystring5)
+#匹配非1，2，3开头的字符串
+```
+
+### '{}'大括号，放在正则表达式任意字符后面,表示前面的字符重复的次数。
+
+```{r}
+mystring6 <- c('1220','2289','2228','1092')
+grep('2{3}',mystring6)
+#匹配2重复3次的字符串，即含有222的字符串。
+mystring6_1 <- c('moment','mother','money','immoral','mmmoo','mmmmhh')
+grep('m{2,3}',mystring6_1)
+#匹配m重复2-3次的字符串
+grep('m{2,}', mystring6_1)
+#匹配m至少重复2次的字符串
+```
+
+### '+'加号，表示匹配至少一次。
+
+```{r}
+mystring12 <- c('food','foot','foul','four','fans')
+grep('fo+',mystring12)
+#匹配fo至少出现一次的字符串
+```
+
+### '*'星号，表示重复0次及0次以上。
+
+```{r}
+mystring6_2 <- c('1234','2333','2233','9999')
+grep('3*',mystring6_2)
+```
+
+### '|'管道符，表示或者的意思，放在不同的表达式之间
+
+```{r}
+mystring7 <- c('kobe','messi','neymar','ronaldo')
+grep('^k|^m',mystring7)
+#匹配k或者m开头的字符串
+```
+
+### '$'美元符，匹配字符串的结束位置
+
+```{r}
+mystring11 <- c('active','positive','negative','initiative','itention')
+grep('ive$',mystring11)
+```
+
+## 保义字符'\\'
+
+如果要匹配在上述的转义字符中提到的字符，就必须使用保义字符
+
+```{r}
+mystring8 <- c('lo^e','hat^','boy')
+grep('\\^',mystring8)
+#匹配含有指数符号的字符串
+mystring9 <- c('(2009)','(2017','2016)','2015','()2013')
+grep('\\([0-9]{4}\\)',mystring9)
+#匹配括号和数字
+```
+
+## 字母的特殊用法
+
+不同语言或应用程序（事实上很多规则都通用）定义了一些特殊的元字符用于表示某类字符，如 **\\d** 表示数字0-9， **\\D **表示非数字，**\\s** 表示空白字符（包括空格、制表符、换行符等），
+**\\S** 表示非空白字符，**\\w** 表示字（字母和数字），**\\W** 表示非字，**\\<** 和 **\\>** 分别表示以空白字符开始和结束的文本，**\\b**匹配单词边界,**\\B**匹配非单词边界。
+
+```{r}
+mystring10 <- c('2013','abcd','23ab')
+grep('\\d',mystring10)
+##匹配数字
+mystring10_2 <- c('2013年5月13日','2016年9月17日')
+gsub('\\D','',mystring10_2)
+#匹配非数字之外的其他部分
+```
+
+```{r}
+mystring13 <- c('maybe','mayor','nima','oomaoo')
+grep('\\bma',mystring13)
+##匹配左边界的ma
+grep('ma\\b',mystring13)
+##匹配右边界的ma
+grep('\\Bma',mystring13)
+##匹配非左边界的ma
+grep('ma\\B',mystring13)
+##匹配非右边界的ma
+```
+
+```{r}
+mystring14 <- c('foo t','  able','mo ther','happy')
+grep('\\s',mystring14)
+#匹配空格
+```
+
+```{r}
+names <- 'Messi Neymar Suarezi Ronaldo    Leopard'
+strsplit(names,split = '\\s+')
+#表示根据字符串中的空格对字符串进行拆分
+```
+
+```{r}
+mystring15 <- c('theroy','the republic', 'they')
+grep('\\<the\\>',mystring15)
+##返回2，表示the左右两边都是空白字符
+```
+
+##stringr
+
+```{r}
+phones <- c(" 219 733 8965", "329-293-8753 ", "banana", "595 794 7569","387 287 6718", "apple", "233.398.9187  ", "482 952 3315",
+  "239 923 8115 and 842 566 4692", "Work: 579-499-7527", "$1000",
+  "Home: 543.355.3679")
+str_extract(phones, "([2-9][0-9]{2})[- .]([0-9]{3})[- .]([0-9]{4})")
+```
+
+```{r}
+fruits <- c("one apple", "two pears", "three bananas")
+str_replace(fruits, "[aeiou]", "-")
+str_replace_all(fruits, "[aeiou]", "-")
+```
+
+

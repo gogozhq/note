@@ -1,0 +1,145 @@
+---
+title: "数据清洗III"
+author: "Leopard"
+date: "2/14/2020"
+output:
+  html_document:
+    self_contained: false
+    theme: united
+    highlight: tango
+---
+
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 18px;
+      font-family:Noto Nastaliq Urdu;
+  }
+td {  /* Table  */
+  font-size: 16px;
+}
+h1.title {
+  font-size: 38px;
+  color: DarkRed;
+}
+h1 { /* Header 1 */
+  font-size: 28px;
+  color: DarkRed;
+  font-family:Noto Nastaliq Urdu;
+}
+h2 { /* Header 2 */
+    font-size: 22px;
+  color: DarkRed;
+  font-family:Noto Nastaliq Urdu;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  color: DarkRed;
+}
+code.r{ /* Code block */
+    font-size: 18px;
+    font-family:Noto Nastaliq Urdu;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 18px;
+    font-family:Noto Nastaliq Urdu;
+}
+</style>
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+library(tidyverse)
+```
+
+
+```{r setup, include=FALSE}
+knitr::knit_hooks$set(error = function(x, options) {
+  paste0("<pre style=\"color: red;\"><code>", x, "</code></pre>")
+})
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#分类变量处理
+
+```{r}
+head(esoph)
+```
+
+##计数
+```{r}
+table(esoph$agegp,esoph$alcgp)
+```
+
+```{r}
+table(esoph$alcgp,esoph$tobgp,esoph$agegp)
+```
+
+```{r}
+table(iris$Sepal.Length>7.0,iris$Species)
+```
+
+```{r}
+addmargins(table(iris$Sepal.Length>7.0,iris$Species),FUN = sum,
+          margin = c(1,2))
+```
+
+```{r}
+prop.table(table(iris$Sepal.Length>7.0,iris$Species),
+           margin = 1)
+```
+
+```{r}
+xtabs(ncontrols~agegp+alcgp,data=esoph)
+##根据ncontrols来计数
+```
+
+##改变因子水平标签
+```{r}
+gss_cat %>% count(partyid)
+```
+
+```{r}
+gss_cat %>%
+mutate(partyid = fct_recode(partyid,
+"Republican, strong" = "Strong republican",
+"Republican, weak" = "Not str republican",
+"Independent, near rep" = "Ind,near rep",
+"Independent, near dem" = "Ind,near dem",
+"Democrat, weak" = "Not str democrat",
+"Democrat, strong" = "Strong democrat"
+)) %>%
+count(partyid)
+```
+
+##改变因子水平
+```{r}
+gss_cat %>%
+mutate(partyid = fct_recode(partyid,
+"Republican, strong" = "Strong republican",
+"Republican, weak" = "Not str republican",
+"Independent, near rep" = "Ind,near rep",
+"Independent, near dem" = "Ind,near dem",
+"Democrat, weak" = "Not str democrat",
+"Democrat, strong" = "Strong democrat",
+"Other" = "No answer",
+"Other" = "Don't know",
+"Other" = "Other party"
+)) %>%
+  count(partyid)
+```
+
+##合并因子水平
+```{r}
+gss_cat %>%
+mutate(partyid = fct_collapse(partyid,
+other = c("No answer", "Don't know", "Other party"),
+rep = c("Strong republican", "Not str republican"),
+ind = c("Ind,near rep", "Independent", "Ind,near dem"),
+dem = c("Not str democrat", "Strong democrat")
+)) %>%
+count(partyid)
+```
+
+
+
+
+
