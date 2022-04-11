@@ -83,8 +83,7 @@
 >
 > [R语言安装指南](https://www.bilibili.com/video/BV19p4y1i7Zb?spm_id_from=333.999.0.0)  
 > 
-> [生信必备技巧之R语言基础教程全集](https://www.bilibili.com/video/BV1gb4y1X7Mw?p=1)    
->> [R语言基础教程笔记和代码](./collections/生信师兄-R语言课程笔记和代码)
+> 购买解螺旋课程-**14天R语言从入门到精通**
 >
 > [R语言与生物信息绘图](https://www.bilibili.com/video/BV1bq4y1T76W?spm_id_from=333.851.header_right.history_list.click)   
 
