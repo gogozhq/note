@@ -61,7 +61,6 @@
 > [生物信息学入门课：生信中常用的多元统计分析](https://ke.qq.com/course/709956)
 
 ## [生物信息学](#目录)
-
 ### [杂谈](#目录)
 > [聊聊从0开始的生信自学之路](https://www.bilibili.com/video/BV1cL4y1h7jS?spm_id_from=333.999.0.0)  
 > [生信入门的经验分享](https://www.bilibili.com/video/BV1c7411h7k6?spm_id_from=333.999.0.0) 
@@ -87,7 +86,7 @@
 > [生信必备技巧之R语言基础教程全集](https://www.bilibili.com/video/BV1gb4y1X7Mw?p=1)    
 >> [R语言基础教程笔记和代码](./collections/生信师兄-R语言课程笔记和代码)
 >
-> [R语言与生物信息绘图](https://www.bilibili.com/video/BV1XJ411m73p?p=1) 
+> [R语言与生物信息绘图](https://www.bilibili.com/video/BV1bq4y1T76W?spm_id_from=333.851.header_right.history_list.click)   
 
 ### [生信快速入门](#目录)
 > [生物信息快速入门](https://www.bilibili.com/video/BV1C4411w7jM?p=46)**（用来配合理解后续相关知识）**  
