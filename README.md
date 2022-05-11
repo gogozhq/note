@@ -50,13 +50,14 @@
 [进化基因组学-系列视频](https://www.bilibili.com/video/BV1wi4y1u7Y7?spm_id_from=333.999.header_right.fav_list.click)  
   
 [**简单的进化分析实例**](./学习笔记-简单的进化分析实例.md)  
-[**构建系统发育树**](./学习笔记-构建系统发育树.md)  
-
 
 ## [生物统计学](#目录) 
 > [《白话统计》](./collections/书籍pdf和视频下载链接.md)  
 >
+
 > [通俗统计学原理入门（系列视频）](https://www.bilibili.com/video/BV1x64y1B71k)  
+> [SPSSAU在线科学数据分析平台](https://spssau.com/index.html)-**内有数据分析的教学**  
+
 > [生物信息学入门课：学习生信你需要了解的统计学](https://ke.qq.com/course/395709)  
 > [生物信息学入门课：生信中常用的多元统计分析](https://ke.qq.com/course/709956)
 
@@ -83,7 +84,7 @@
 >
 > [R语言安装指南](https://www.bilibili.com/video/BV19p4y1i7Zb?spm_id_from=333.999.0.0)  
 > 
-> [解螺旋课程-R语言从入门到精通](https://www.helixlife.cn/periods-learn/3c0b4b1c-a7b0-41d1-a97f-195d4aa1679b)  
+> 《解螺旋课程-R语言从入门到精通》课程  
 >> [**笔记跳转**](./supplement/解螺旋课程-R语言从入门到精通)  
 >
 > [R语言与生物信息绘图](https://www.bilibili.com/video/BV1bq4y1T76W?spm_id_from=333.851.header_right.history_list.click)   
