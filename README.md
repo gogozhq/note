@@ -30,21 +30,22 @@
 ## [分子生物学](#目录)  
 [**笔记跳转**](./学习笔记-分子生物学.md)
 
-- 实验protocol包
-- 课本
-- 1. 认识DNA和RNA
-  - 中心法则
-  - 真核生物基因结构
-  - 区分cds和orf
-- 2. NCBI
-- 3. PCR
-- 4. Touch Down PCR
-- 5. RNA核酸提取
-- 6. RT-PCR
-- 7. 荧光定量PCR
-- 8. Crispr
-- 9. 质粒构建表达 
-- 10. snapgene
+- [实验protocol包](#实验protocol包)
+- [课本](#课本)
+- [认识DNA和RNA](#认识dna和rna)
+  - [中心法则](#中心法则)
+  - [真核生物基因结构](#真核生物基因结构)
+  - [区分cds和orf](#区分cds和orf)
+- [NCBI](#ncbi)
+- [PCR](#pcr)
+- [Touch Down PCR](#touch-down-pcr)
+- [巢式PCR](#巢式pcr)
+- [RNA核酸提取](#rna核酸提取)
+- [RT-PCR](#rt-pcr)
+- [荧光定量PCR](#荧光定量pcr)
+- [Crispr](#crispr)
+- [质粒构建表达](#质粒构建表达)
+- [snapgene](#snapgene)
 
 ## [遗传进化分析](#目录)  
 [进化基因组学-系列视频](https://www.bilibili.com/video/BV1wi4y1u7Y7?spm_id_from=333.999.header_right.fav_list.click)  
